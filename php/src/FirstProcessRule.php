@@ -9,7 +9,7 @@ class FirstProcessRule
     public function firstProcessRule($item)
     {
 
-        if ($item->name != 'Aged Brie' and $item->name != 'Backstage passes to a TAFKAL80ETC concert') {
+        if ($this->isNotAgedBrieBackstageItems($item)) {
             return $this->qualityAboveZero($item);
         }
 
@@ -17,25 +17,30 @@ class FirstProcessRule
 
             $item->quality = $item->quality + 1;
 
-            $isBackstagePasses = $item->name == 'Backstage passes to a TAFKAL80ETC concert';
 
-            if ($isBackstagePasses) {
+            if ($this->isBackstageItems($item)) {
                 if ($item->sell_in < 11) {
-                    if ($item->quality < 50) {
-                        $item->quality = $item->quality + 1;
-                    }
+                    $this->increaseForHalfQuality($item);
                 }
                 if ($item->sell_in < 6) {
-                    if ($item->quality < 50) {
-                        $item->quality = $item->quality + 1;
-                    }
+                    $this->increaseForHalfQuality($item);
                 }
             }
         }
 
 
     }
-    
+
+    public function isNotAgedBrieBackstageItems($item)
+    {
+        return $item->name != 'Aged Brie' and $item->name != 'Backstage passes to a TAFKAL80ETC concert';
+    }
+
+    public function isBackstageItems($item)
+    {
+        return $item->name == 'Backstage passes to a TAFKAL80ETC concert';
+    }
+
 
     public function qualityAboveZero($item)
     {
@@ -46,6 +51,13 @@ class FirstProcessRule
             if ($isNotSulfuras) {
                 $item->quality = $item->quality - 1;
             }
+        }
+    }
+
+    public function increaseForHalfQuality($item)
+    {
+        if ($item->quality < 50) {
+            $item->quality = $item->quality + 1;
         }
     }
 
