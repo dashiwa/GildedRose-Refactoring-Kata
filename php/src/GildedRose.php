@@ -21,7 +21,8 @@ final class GildedRose
     {
         foreach ($this->items as $item) {
 
-            $firstProcessRule = new FirstProcessRule();
+            $itemQuality = new ItemQuality();
+            $firstProcessRule = new FirstProcessRule($itemQuality);
 
             $firstProcessRule->firstProcessRule($item);
 
