@@ -3,9 +3,17 @@
 
 namespace GildedRose;
 
+use GildedRose\ItemQuality;
 
 class ThirdProcessRule
 {
+    private $itemQuality;
+
+    public function __construct(ItemQuality $itemQuality)
+    {
+        $this->itemQuality = $itemQuality;
+    }
+
     public function thirdProcessRule($item)
     {
         if ($item->sell_in < 0) {
@@ -14,9 +22,7 @@ class ThirdProcessRule
                 return $this->notBackstagePassesItem($item);
             }
 
-            if ($item->quality < 50) {
-                $item->quality = $item->quality + 1;
-            }
+            $this->itemQuality->increaseForHalfQuality($item);
 
         }
     }
@@ -24,21 +30,11 @@ class ThirdProcessRule
     public function notBackstagePassesItem($item)
     {
         if ($item->name != 'Backstage passes to a TAFKAL80ETC concert') {
-            return $this->itemQualityAboveZero($item);
+            return $this->itemQuality->qualityAboveZero($item);
         }
 
         $item->quality = $item->quality - $item->quality;
 
     }
-
-    public function itemQualityAboveZero($item)
-    {
-        if ($item->quality > 0) {
-            if ($item->name != 'Sulfuras, Hand of Ragnaros') {
-                $item->quality = $item->quality - 1;
-            }
-        }
-    }
-
 
 }

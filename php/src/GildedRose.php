@@ -32,7 +32,7 @@ final class GildedRose
             $secondProcessRule->secondProcessRule($item);
 
 
-            $thirdProcessRule = new ThirdProcessRule();
+            $thirdProcessRule = new ThirdProcessRule($itemQuality);
 
             $thirdProcessRule->thirdProcessRule($item);
 
