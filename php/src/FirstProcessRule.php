@@ -31,10 +31,12 @@ class FirstProcessRule
             if ($this->isBackstageItems($item)) {
 
                 if ($item->sell_in < 11) {
-                    $this->itemQuality->increaseForHalfQuality($item);
+                    $SellInLessThanEleven = new SellInLessThanEleven($item);
+                    $SellInLessThanEleven->IncreaseQuality($this->itemQuality);
                 }
                 if ($item->sell_in < 6) {
-                    $this->itemQuality->increaseForHalfQuality($item);
+                    $SellInLessThanSix = new SellInLessThanSix($item);
+                    $SellInLessThanSix->IncreaseQuality($this->itemQuality);
                 }
 
             }
