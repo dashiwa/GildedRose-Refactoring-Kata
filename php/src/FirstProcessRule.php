@@ -28,22 +28,10 @@ class FirstProcessRule
 
             ++$item->quality;
 
-
             if ($this->isBackstageItems($item)) {
-
-                if ($item->sell_in < 11) {
-                    $SellInLessThanEleven = new SellInLessThanEleven($item);
-                    $SellInLessThanEleven->IncreaseQuality($this->itemQuality);
-                }
-                if ($item->sell_in < 6) {
-                    $SellInLessThanSix = new SellInLessThanSix($item);
-                    $SellInLessThanSix->IncreaseQuality($this->itemQuality);
-                }
-
+                SellInFactory::SellInProcess($item, $this->itemQuality);
             }
         }
-
-
     }
 
     public function isNotAgedBrieBackstageItems($item)

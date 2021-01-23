@@ -8,8 +8,6 @@ class SellInLessThanSix implements SellInIncreaseQuality
 {
     private $item;
 
-    private $itemQuality;
-
     public function __construct(Item $item)
     {
         $this->item = $item;
