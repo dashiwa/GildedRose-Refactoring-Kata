@@ -6,10 +6,11 @@ namespace GildedRose;
 
 class SecondProcessRule
 {
+    const SULFURASHANDRAGNAROS = 'Sulfuras, Hand of Ragnaros';
     public function secondProcessRule($item)
     {
-        if ($item->name != 'Sulfuras, Hand of Ragnaros') {
-            $item->sell_in = $item->sell_in - 1;
+        if ($item->name != self::SULFURASHANDRAGNAROS) {
+            --$item->sell_in;
         }
     }
 
