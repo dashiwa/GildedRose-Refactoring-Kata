@@ -8,14 +8,19 @@ namespace GildedRose;
  */
 class SecondProcessRule
 {
-    public const SULFURASHANDRAGNAROS = 'Sulfuras, Hand of Ragnaros';
+    private $itemNameFilter;
+
+    public function __construct()
+    {
+        $this->itemNameFilter = new ItemNameFilter();
+    }
 
     /**
      * @param Item $item
      */
     public function secondProcessRule(Item $item): void
     {
-        if ($item->name !== self::SULFURASHANDRAGNAROS) {
+        if ($this->itemNameFilter->isSulfurasHandRagnarosItems($item)) {
             --$item->sell_in;
         }
     }
