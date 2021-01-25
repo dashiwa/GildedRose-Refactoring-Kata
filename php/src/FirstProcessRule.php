@@ -11,13 +11,12 @@ use GildedRose\ItemQuality;
  */
 class FirstProcessRule
 {
-    public const BACKSTAGEPASSES = 'Backstage passes to a TAFKAL80ETC concert';
-    public const AGEDBRIE = 'Aged Brie';
-
     private $itemQuality;
+    private $itemNameFilter;
 
     public function __construct(ItemQuality $itemQuality)
     {
+        $this->itemNameFilter = new ItemNameFilter();
         $this->itemQuality = $itemQuality;
     }
 
@@ -27,7 +26,7 @@ class FirstProcessRule
     public function firstProcessRule(Item $item)
     {
 
-        if ($this->isNotAgedBrieBackstageItems($item)) {
+        if ($this->itemNameFilter->isNotAgedBrieBackstageItems($item)) {
             return $this->itemQuality->qualityAboveZero($item);
         }
 
@@ -35,29 +34,9 @@ class FirstProcessRule
 
             ++$item->quality;
 
-            if ($this->isBackstageItems($item)) {
+            if ($this->itemNameFilter->isBackstageItems($item)) {
                 SellInFactory::SellInProcess($item, $this->itemQuality);
             }
         }
     }
-
-    /**
-     * @param Item $item
-     * @return bool
-     */
-    public function isNotAgedBrieBackstageItems(Item $item): bool
-    {
-        return $item->name !== self::AGEDBRIE && $item->name !== self::BACKSTAGEPASSES;
-    }
-
-    /**
-     * @param Item $item
-     * @return bool
-     */
-    public function isBackstageItems(Item $item): bool
-    {
-        return $item->name === self::BACKSTAGEPASSES;
-    }
-
-
 }
