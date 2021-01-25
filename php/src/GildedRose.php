@@ -5,6 +5,10 @@ declare(strict_types=1);
 namespace GildedRose;
 
 
+/**
+ * Class GildedRose
+ * @package GildedRose
+ */
 final class GildedRose
 {
     /**

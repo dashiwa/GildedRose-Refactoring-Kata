@@ -4,10 +4,17 @@
 namespace GildedRose;
 
 
+/**
+ * Class ItemQuality
+ * @package GildedRose
+ */
 class ItemQuality
 {
     const SULFURASHANDRAGNAROS = 'Sulfuras, Hand of Ragnaros';
 
+    /**
+     * @param $item
+     */
     public function qualityAboveZero($item)
     {
         if ($item->quality > 0) {
@@ -15,6 +22,9 @@ class ItemQuality
         }
     }
 
+    /**
+     * @param $item
+     */
     public function increaseForHalfQuality($item)
     {
         if ($item->quality < 50) {
@@ -22,6 +32,9 @@ class ItemQuality
         }
     }
 
+    /**
+     * @param $item
+     */
     public function decreaseQuality($item)
     {
         $isNotSulfuras = $item->name != self::SULFURASHANDRAGNAROS;

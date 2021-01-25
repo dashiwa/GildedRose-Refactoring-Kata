@@ -4,6 +4,10 @@
 namespace GildedRose;
 
 
+/**
+ * Class SellInLessThanEleven
+ * @package GildedRose
+ */
 class SellInLessThanEleven implements SellInIncreaseQuality
 {
 
@@ -14,6 +18,9 @@ class SellInLessThanEleven implements SellInIncreaseQuality
         $this->item = $item;
     }
 
+    /**
+     * @param ItemQuality $itemQuality
+     */
     public function IncreaseQuality(ItemQuality $itemQuality)
     {
         $itemQuality->increaseForHalfQuality($this->item);

@@ -5,6 +5,10 @@ namespace GildedRose;
 
 use GildedRose\ItemQuality;
 
+/**
+ * Class FirstProcessRule
+ * @package GildedRose
+ */
 class FirstProcessRule
 {
     const BACKSTAGEPASSES = 'Backstage passes to a TAFKAL80ETC concert';
@@ -17,6 +21,9 @@ class FirstProcessRule
         $this->itemQuality = $itemQuality;
     }
 
+    /**
+     * @param $item
+     */
     public function firstProcessRule($item)
     {
 
@@ -34,11 +41,19 @@ class FirstProcessRule
         }
     }
 
+    /**
+     * @param $item
+     * @return bool
+     */
     public function isNotAgedBrieBackstageItems($item)
     {
         return $item->name != self::AGEDBRIE and $item->name != self::BACKSTAGEPASSES;
     }
 
+    /**
+     * @param $item
+     * @return bool
+     */
     public function isBackstageItems($item)
     {
         return $item->name == self::BACKSTAGEPASSES;

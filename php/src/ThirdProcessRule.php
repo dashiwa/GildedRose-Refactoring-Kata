@@ -5,6 +5,10 @@ namespace GildedRose;
 
 use GildedRose\ItemQuality;
 
+/**
+ * Class ThirdProcessRule
+ * @package GildedRose
+ */
 class ThirdProcessRule
 {
     private $itemQuality;
@@ -14,11 +18,14 @@ class ThirdProcessRule
         $this->itemQuality = $itemQuality;
     }
 
+    /**
+     * @param $item
+     */
     public function thirdProcessRule($item)
     {
         if ($item->sell_in < 0) {
 
-            if ($item->name != 'Aged Brie') {
+            if ($item->name !== 'Aged Brie') {
                 return $this->notBackstagePassesItem($item);
             }
 
@@ -27,9 +34,12 @@ class ThirdProcessRule
         }
     }
 
+    /**
+     * @param $item
+     */
     public function notBackstagePassesItem($item)
     {
-        if ($item->name != 'Backstage passes to a TAFKAL80ETC concert') {
+        if ($item->name !== 'Backstage passes to a TAFKAL80ETC concert') {
             return $this->itemQuality->qualityAboveZero($item);
         }
 
