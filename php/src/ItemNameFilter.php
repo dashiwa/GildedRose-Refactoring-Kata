@@ -27,9 +27,28 @@ class ItemNameFilter
      * @param Item $item
      * @return bool
      */
+    public function isNotBackstageItems(Item $item): bool
+    {
+        return $item->name !== self::BACKSTAGEPASSES;
+    }
+
+
+    /**
+     * @param Item $item
+     * @return bool
+     */
     public function isNotAgedBrieBackstageItems(Item $item): bool
     {
         return $item->name !== self::AGEDBRIE && $item->name !== self::BACKSTAGEPASSES;
+    }
+
+    /**
+     * @param Item $item
+     * @return bool
+     */
+    public function isNotAgedBrieItems(Item $item): bool
+    {
+        return $item->name !== self::AGEDBRIE;
     }
 
     /**
@@ -40,5 +59,6 @@ class ItemNameFilter
     {
         return $item->name !== self::SULFURASHANDRAGNAROS;
     }
+
 
 }

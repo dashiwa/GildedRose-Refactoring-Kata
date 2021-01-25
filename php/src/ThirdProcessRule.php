@@ -14,11 +14,13 @@ class ThirdProcessRule
     public const BACKSTAGEPASSES = 'Backstage passes to a TAFKAL80ETC concert';
 
     private $itemQuality;
+    private $itemNameFilter;
 
 
     public function __construct(ItemQuality $itemQuality)
     {
         $this->itemQuality = $itemQuality;
+        $this->itemNameFilter = new ItemNameFilter();
     }
 
     /**
@@ -28,7 +30,7 @@ class ThirdProcessRule
     {
         if ($item->sell_in < 0) {
 
-            if ($item->name !== self::AGEDBRIE) {
+            if ($this->itemNameFilter->isNotAgedBrieItems($item)) {
                 return $this->notBackstagePassesItem($item);
             }
 
@@ -42,7 +44,7 @@ class ThirdProcessRule
      */
     public function notBackstagePassesItem(Item $item)
     {
-        if ($item->name !== self::BACKSTAGEPASSES) {
+        if ($this->itemNameFilter->isNotBackstageItems($item)) {
             return $this->itemQuality->qualityAboveZero($item);
         }
 
