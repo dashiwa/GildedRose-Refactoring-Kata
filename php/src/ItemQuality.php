@@ -45,4 +45,13 @@ class ItemQuality
 
     }
 
+    /**
+     * @param Item $item
+     * @return int;
+     */
+    public function reductionQuality(Item $item): int
+    {
+        return $item->quality -= $item->quality;
+    }
+
 }

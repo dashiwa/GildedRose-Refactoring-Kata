@@ -46,17 +46,10 @@ class ThirdProcessRule
             return $this->itemQuality->qualityAboveZero($item);
         }
 
-        $this->reductionQuality($item);
+        $this->itemQuality->reductionQuality($item);
 
     }
 
-    /**
-     * @param Item $item
-     * @return int;
-     */
-    public function reductionQuality(Item $item): int
-    {
-        return $item->quality -= $item->quality;
-    }
+
 
 }
