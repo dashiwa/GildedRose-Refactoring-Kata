@@ -11,8 +11,8 @@ use GildedRose\ItemQuality;
  */
 class FirstProcessRule
 {
-    const BACKSTAGEPASSES = 'Backstage passes to a TAFKAL80ETC concert';
-    const AGEDBRIE = 'Aged Brie';
+    public const BACKSTAGEPASSES = 'Backstage passes to a TAFKAL80ETC concert';
+    public const AGEDBRIE = 'Aged Brie';
 
     private $itemQuality;
 
@@ -22,9 +22,9 @@ class FirstProcessRule
     }
 
     /**
-     * @param $item
+     * @param Item $item
      */
-    public function firstProcessRule($item)
+    public function firstProcessRule(Item $item)
     {
 
         if ($this->isNotAgedBrieBackstageItems($item)) {
@@ -42,21 +42,21 @@ class FirstProcessRule
     }
 
     /**
-     * @param $item
+     * @param Item $item
      * @return bool
      */
-    public function isNotAgedBrieBackstageItems($item)
+    public function isNotAgedBrieBackstageItems(Item $item): bool
     {
-        return $item->name != self::AGEDBRIE and $item->name != self::BACKSTAGEPASSES;
+        return $item->name !== self::AGEDBRIE && $item->name !== self::BACKSTAGEPASSES;
     }
 
     /**
-     * @param $item
+     * @param Item $item
      * @return bool
      */
-    public function isBackstageItems($item)
+    public function isBackstageItems(Item $item): bool
     {
-        return $item->name == self::BACKSTAGEPASSES;
+        return $item->name === self::BACKSTAGEPASSES;
     }
 
 
