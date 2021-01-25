@@ -1,6 +1,5 @@
 <?php
 
-
 namespace GildedRose;
 
 use GildedRose\ItemQuality;
@@ -11,7 +10,11 @@ use GildedRose\ItemQuality;
  */
 class ThirdProcessRule
 {
+    public const AGEDBRIE = 'Aged Brie';
+    public const BACKSTAGEPASSES = 'Backstage passes to a TAFKAL80ETC concert';
+
     private $itemQuality;
+
 
     public function __construct(ItemQuality $itemQuality)
     {
@@ -19,13 +22,13 @@ class ThirdProcessRule
     }
 
     /**
-     * @param $item
+     * @param Item $item
      */
-    public function thirdProcessRule($item)
+    public function thirdProcessRule(Item $item)
     {
         if ($item->sell_in < 0) {
 
-            if ($item->name !== 'Aged Brie') {
+            if ($item->name !== self::AGEDBRIE) {
                 return $this->notBackstagePassesItem($item);
             }
 
@@ -35,15 +38,15 @@ class ThirdProcessRule
     }
 
     /**
-     * @param $item
+     * @param Item $item
      */
-    public function notBackstagePassesItem($item)
+    public function notBackstagePassesItem(Item $item)
     {
-        if ($item->name !== 'Backstage passes to a TAFKAL80ETC concert') {
+        if ($item->name !== self::BACKSTAGEPASSES) {
             return $this->itemQuality->qualityAboveZero($item);
         }
 
-        $item->quality = $item->quality - $item->quality;
+        $item->quality -= $item->quality;
 
     }
 
