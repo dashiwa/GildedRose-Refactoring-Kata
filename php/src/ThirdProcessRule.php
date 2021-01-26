@@ -25,7 +25,7 @@ class ThirdProcessRule
     }
 
 
-    public function thirdProcessRule(Item $item)
+    public function thirdProcessRule(Item $item): ?int
     {
         if ($item->sell_in < 0) {
             if ($this->itemNameFilter->isNotAgedBrieItems($item)) {
@@ -34,15 +34,19 @@ class ThirdProcessRule
 
             $this->itemQuality->increaseForHalfQuality($item);
         }
+
+        return null;
     }
 
 
-    public function notBackstagePassesItem(Item $item)
+    public function notBackstagePassesItem(Item $item): ?int
     {
         if ($this->itemNameFilter->isNotBackstageItems($item)) {
             return $this->itemQuality->qualityAboveZero($item);
         }
 
         $this->itemQuality->reductionQuality($item);
+
+        return null;
     }
 }

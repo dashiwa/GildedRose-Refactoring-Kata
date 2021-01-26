@@ -21,7 +21,7 @@ class FirstProcessRule
     }
 
 
-    public function firstProcessRule(Item $item)
+    public function firstProcessRule(Item $item): ?int
     {
         if ($this->itemNameFilter->isNotAgedBrieBackstageItems($item)) {
             return $this->itemQuality->qualityAboveZero($item);
@@ -34,5 +34,7 @@ class FirstProcessRule
                 SellInFactory::SellInProcess($item, $this->itemQuality);
             }
         }
+
+        return null;
     }
 }

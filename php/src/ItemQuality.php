@@ -18,33 +18,42 @@ class ItemQuality
     }
 
     /**
-     * @param $item
+     * @param Item $item
+     * @return int|null
      */
-    public function qualityAboveZero($item): void
+    public function qualityAboveZero(Item $item): ?int
     {
         if ($item->quality > 0) {
-            $this->decreaseQuality($item);
+            return $this->decreaseQuality($item);
         }
+
+        return null;
     }
 
     /**
-     * @param $item
+     * @param Item $item
+     * @return int|null
      */
-    public function increaseForHalfQuality($item): void
+    public function increaseForHalfQuality(Item $item): ?int
     {
         if ($item->quality < 50) {
-            ++$item->quality;
+            return ++$item->quality;
         }
+
+        return null;
     }
 
     /**
-     * @param $item
+     * @param Item $item
+     * @return int|null
      */
-    public function decreaseQuality($item): void
+    public function decreaseQuality(Item $item): ?int
     {
         if ($this->itemNameFilter->isNotSulfurasHandRagnarosItems($item)) {
-            --$item->quality;
+            return --$item->quality;
         }
+
+        return null;
     }
 
     /**
