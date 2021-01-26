@@ -10,6 +10,9 @@ namespace GildedRose;
  */
 class ItemQuality
 {
+    /**
+     * @var ItemNameFilter
+     */
     private $itemNameFilter;
 
     public function __construct()
@@ -17,10 +20,11 @@ class ItemQuality
         $this->itemNameFilter = new ItemNameFilter();
     }
 
-    /**
-     * @param Item $item
-     * @return int|null
-     */
+    public function getItemNameFilter(): ItemNameFilter
+    {
+        return $this->itemNameFilter;
+    }
+
     public function qualityAboveZero(Item $item): ?int
     {
         if ($item->quality > 0) {
@@ -30,10 +34,6 @@ class ItemQuality
         return null;
     }
 
-    /**
-     * @param Item $item
-     * @return int|null
-     */
     public function increaseForHalfQuality(Item $item): ?int
     {
         if ($item->quality < 50) {
@@ -43,13 +43,9 @@ class ItemQuality
         return null;
     }
 
-    /**
-     * @param Item $item
-     * @return int|null
-     */
     public function decreaseQuality(Item $item): ?int
     {
-        if ($this->itemNameFilter->isNotSulfurasHandRagnarosItems($item)) {
+        if ($this->getItemNameFilter()->isNotSulfurasHandRagnarosItems($item)) {
             return --$item->quality;
         }
 

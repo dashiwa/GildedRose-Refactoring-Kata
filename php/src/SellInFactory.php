@@ -10,14 +10,8 @@ namespace GildedRose;
  */
 class SellInFactory
 {
-    /**
-     * @param Item $item
-     * @param ItemQuality $itemQuality
-     */
-    public static function sellInProcess(
-        Item $item,
-        ItemQuality $itemQuality
-    ): void {
+    public static function sellInProcess(Item $item, ItemQuality $itemQuality): void
+    {
         if ($item->sell_in < 11) {
             $SellInLessThanEleven = new SellInLessThanEleven($item);
             $SellInLessThanEleven->IncreaseQuality($itemQuality);

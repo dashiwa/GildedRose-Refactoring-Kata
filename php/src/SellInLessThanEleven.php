@@ -10,6 +10,9 @@ namespace GildedRose;
  */
 class SellInLessThanEleven implements SellInIncreaseQuality
 {
+    /**
+     * @var Item
+     */
     private $item;
 
     public function __construct(Item $item)
@@ -17,9 +20,13 @@ class SellInLessThanEleven implements SellInIncreaseQuality
         $this->item = $item;
     }
 
+    public function getItem(): Item
+    {
+        return $this->item;
+    }
 
     public function IncreaseQuality(ItemQuality $itemQuality): void
     {
-        $itemQuality->increaseForHalfQuality($this->item);
+        $itemQuality->increaseForHalfQuality($this->getItem());
     }
 }

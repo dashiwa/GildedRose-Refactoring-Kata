@@ -10,6 +10,9 @@ namespace GildedRose;
  */
 class SecondProcessRule
 {
+    /**
+     * @var ItemNameFilter
+     */
     private $itemNameFilter;
 
     public function __construct()
@@ -17,17 +20,18 @@ class SecondProcessRule
         $this->itemNameFilter = new ItemNameFilter();
     }
 
+    public function getItemNameFilter(): ItemNameFilter
+    {
+        return $this->itemNameFilter;
+    }
 
     public function secondProcessRule(Item $item): void
     {
-        if ($this->itemNameFilter->isNotSulfurasHandRagnarosItems($item)) {
+        if ($this->getItemNameFilter()->isNotSulfurasHandRagnarosItems($item)) {
             $this->decreaseSellInItem($item);
         }
     }
 
-    /**
-     * @return int
-     */
     public function decreaseSellInItem(Item $item): int
     {
         return --$item->sell_in;
