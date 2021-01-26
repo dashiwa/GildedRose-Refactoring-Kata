@@ -21,7 +21,7 @@ class SellInLessThanEleven implements SellInIncreaseQuality
     /**
      * @param ItemQuality $itemQuality
      */
-    public function IncreaseQuality(ItemQuality $itemQuality)
+    public function IncreaseQuality(ItemQuality $itemQuality): void
     {
         $itemQuality->increaseForHalfQuality($this->item);
     }

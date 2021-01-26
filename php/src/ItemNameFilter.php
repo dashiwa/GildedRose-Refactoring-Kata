@@ -55,7 +55,7 @@ class ItemNameFilter
      * @param Item $item
      * @return bool
      */
-    public function isSulfurasHandRagnarosItems(Item $item): bool
+    public function isNotSulfurasHandRagnarosItems(Item $item): bool
     {
         return $item->name !== self::SULFURASHANDRAGNAROS;
     }

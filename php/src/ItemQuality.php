@@ -10,22 +10,27 @@ namespace GildedRose;
  */
 class ItemQuality
 {
-    const SULFURASHANDRAGNAROS = 'Sulfuras, Hand of Ragnaros';
+    private $itemNameFilter;
+
+    public function __construct()
+    {
+        $this->itemNameFilter = new ItemNameFilter();
+    }
 
     /**
      * @param $item
      */
-    public function qualityAboveZero($item)
+    public function qualityAboveZero($item): void
     {
         if ($item->quality > 0) {
-           return $this->decreaseQuality($item);
+           $this->decreaseQuality($item);
         }
     }
 
     /**
      * @param $item
      */
-    public function increaseForHalfQuality($item)
+    public function increaseForHalfQuality($item): void
     {
         if ($item->quality < 50) {
             ++$item->quality;
@@ -35,14 +40,11 @@ class ItemQuality
     /**
      * @param $item
      */
-    public function decreaseQuality($item)
+    public function decreaseQuality($item): void
     {
-        $isNotSulfuras = $item->name != self::SULFURASHANDRAGNAROS;
-
-        if ($isNotSulfuras) {
-            --$item->quality;
+        if ($this->itemNameFilter->isNotSulfurasHandRagnarosItems($item)) {
+           --$item->quality;
         }
-
     }
 
     /**

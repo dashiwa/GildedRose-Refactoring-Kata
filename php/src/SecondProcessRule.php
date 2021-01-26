@@ -20,7 +20,7 @@ class SecondProcessRule
      */
     public function secondProcessRule(Item $item): void
     {
-        if ($this->itemNameFilter->isSulfurasHandRagnarosItems($item)) {
+        if ($this->itemNameFilter->isNotSulfurasHandRagnarosItems($item)) {
             $this->decreaseSellInItem($item);
         }
     }
@@ -29,7 +29,7 @@ class SecondProcessRule
      * @param Item $item
      * @return int
      */
-    public function decreaseSellInItem(Item $item) : int
+    public function decreaseSellInItem(Item $item): int
     {
         return --$item->sell_in;
     }
