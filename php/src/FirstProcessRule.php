@@ -1,9 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace GildedRose;
-
-use GildedRose\ItemQuality;
 
 /**
  * Class FirstProcessRule
@@ -12,6 +11,7 @@ use GildedRose\ItemQuality;
 class FirstProcessRule
 {
     private $itemQuality;
+
     private $itemNameFilter;
 
     public function __construct(ItemQuality $itemQuality)
@@ -20,18 +20,14 @@ class FirstProcessRule
         $this->itemQuality = $itemQuality;
     }
 
-    /**
-     * @param Item $item
-     */
+
     public function firstProcessRule(Item $item)
     {
-
         if ($this->itemNameFilter->isNotAgedBrieBackstageItems($item)) {
             return $this->itemQuality->qualityAboveZero($item);
         }
 
         if ($item->quality < 50) {
-
             ++$item->quality;
 
             if ($this->itemNameFilter->isBackstageItems($item)) {

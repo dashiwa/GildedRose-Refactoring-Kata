@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace GildedRose;
 
 /**
@@ -15,9 +17,7 @@ class SecondProcessRule
         $this->itemNameFilter = new ItemNameFilter();
     }
 
-    /**
-     * @param Item $item
-     */
+
     public function secondProcessRule(Item $item): void
     {
         if ($this->itemNameFilter->isNotSulfurasHandRagnarosItems($item)) {
@@ -26,12 +26,10 @@ class SecondProcessRule
     }
 
     /**
-     * @param Item $item
      * @return int
      */
     public function decreaseSellInItem(Item $item): int
     {
         return --$item->sell_in;
     }
-
 }

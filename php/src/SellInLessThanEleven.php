@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace GildedRose;
-
 
 /**
  * Class SellInLessThanEleven
@@ -10,7 +10,6 @@ namespace GildedRose;
  */
 class SellInLessThanEleven implements SellInIncreaseQuality
 {
-
     private $item;
 
     public function __construct(Item $item)
@@ -18,12 +17,9 @@ class SellInLessThanEleven implements SellInIncreaseQuality
         $this->item = $item;
     }
 
-    /**
-     * @param ItemQuality $itemQuality
-     */
+
     public function IncreaseQuality(ItemQuality $itemQuality): void
     {
         $itemQuality->increaseForHalfQuality($this->item);
     }
-
 }

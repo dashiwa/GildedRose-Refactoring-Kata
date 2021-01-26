@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace GildedRose;
-
 
 /**
  * Class ItemNameFilter
@@ -11,11 +11,12 @@ namespace GildedRose;
 class ItemNameFilter
 {
     public const AGEDBRIE = 'Aged Brie';
+
     public const BACKSTAGEPASSES = 'Backstage passes to a TAFKAL80ETC concert';
+
     public const SULFURASHANDRAGNAROS = 'Sulfuras, Hand of Ragnaros';
 
     /**
-     * @param Item $item
      * @return bool
      */
     public function isBackstageItems(Item $item): bool
@@ -24,7 +25,6 @@ class ItemNameFilter
     }
 
     /**
-     * @param Item $item
      * @return bool
      */
     public function isNotBackstageItems(Item $item): bool
@@ -32,9 +32,7 @@ class ItemNameFilter
         return $item->name !== self::BACKSTAGEPASSES;
     }
 
-
     /**
-     * @param Item $item
      * @return bool
      */
     public function isNotAgedBrieBackstageItems(Item $item): bool
@@ -43,7 +41,6 @@ class ItemNameFilter
     }
 
     /**
-     * @param Item $item
      * @return bool
      */
     public function isNotAgedBrieItems(Item $item): bool
@@ -52,13 +49,10 @@ class ItemNameFilter
     }
 
     /**
-     * @param Item $item
      * @return bool
      */
     public function isNotSulfurasHandRagnarosItems(Item $item): bool
     {
         return $item->name !== self::SULFURASHANDRAGNAROS;
     }
-
-
 }

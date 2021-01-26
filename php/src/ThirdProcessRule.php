@@ -1,8 +1,8 @@
 <?php
 
-namespace GildedRose;
+declare(strict_types=1);
 
-use GildedRose\ItemQuality;
+namespace GildedRose;
 
 /**
  * Class ThirdProcessRule
@@ -11,11 +11,12 @@ use GildedRose\ItemQuality;
 class ThirdProcessRule
 {
     public const AGEDBRIE = 'Aged Brie';
+
     public const BACKSTAGEPASSES = 'Backstage passes to a TAFKAL80ETC concert';
 
     private $itemQuality;
-    private $itemNameFilter;
 
+    private $itemNameFilter;
 
     public function __construct(ItemQuality $itemQuality)
     {
@@ -23,25 +24,19 @@ class ThirdProcessRule
         $this->itemNameFilter = new ItemNameFilter();
     }
 
-    /**
-     * @param Item $item
-     */
+
     public function thirdProcessRule(Item $item)
     {
         if ($item->sell_in < 0) {
-
             if ($this->itemNameFilter->isNotAgedBrieItems($item)) {
                 return $this->notBackstagePassesItem($item);
             }
 
             $this->itemQuality->increaseForHalfQuality($item);
-
         }
     }
 
-    /**
-     * @param Item $item
-     */
+
     public function notBackstagePassesItem(Item $item)
     {
         if ($this->itemNameFilter->isNotBackstageItems($item)) {
@@ -49,9 +44,5 @@ class ThirdProcessRule
         }
 
         $this->itemQuality->reductionQuality($item);
-
     }
-
-
-
 }

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace GildedRose;
 
-
 /**
  * Class GildedRose
  * @package GildedRose
@@ -17,7 +16,9 @@ final class GildedRose
     private $items;
 
     private $firstProcessRule;
+
     private $secondProcessRule;
+
     private $thirdProcessRule;
 
     public function __construct(array $items)
@@ -27,7 +28,6 @@ final class GildedRose
         $this->firstProcessRule = new FirstProcessRule($itemQuality);
         $this->secondProcessRule = new SecondProcessRule();
         $this->thirdProcessRule = new ThirdProcessRule($itemQuality);
-
     }
 
     public function updateQuality(): void

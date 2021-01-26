@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace GildedRose;
-
 
 /**
  * Class ItemQuality
@@ -23,7 +23,7 @@ class ItemQuality
     public function qualityAboveZero($item): void
     {
         if ($item->quality > 0) {
-           $this->decreaseQuality($item);
+            $this->decreaseQuality($item);
         }
     }
 
@@ -43,17 +43,15 @@ class ItemQuality
     public function decreaseQuality($item): void
     {
         if ($this->itemNameFilter->isNotSulfurasHandRagnarosItems($item)) {
-           --$item->quality;
+            --$item->quality;
         }
     }
 
     /**
-     * @param Item $item
      * @return int;
      */
     public function reductionQuality(Item $item): int
     {
         return $item->quality -= $item->quality;
     }
-
 }

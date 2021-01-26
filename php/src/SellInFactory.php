@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace GildedRose;
-
 
 /**
  * Class SellInFactory
@@ -10,13 +10,14 @@ namespace GildedRose;
  */
 class SellInFactory
 {
-
     /**
      * @param $item
      * @param $itemQuality
      */
-    public static function sellInProcess($item, $itemQuality)
-    {
+    public static function sellInProcess(
+        $item,
+        $itemQuality
+    ): void {
         if ($item->sell_in < 11) {
             $SellInLessThanEleven = new SellInLessThanEleven($item);
             $SellInLessThanEleven->IncreaseQuality($itemQuality);
@@ -26,5 +27,4 @@ class SellInFactory
             $SellInLessThanSix->IncreaseQuality($itemQuality);
         }
     }
-
 }
